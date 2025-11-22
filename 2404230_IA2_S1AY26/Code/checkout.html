@@ -1,0 +1,165 @@
+<!--
+Name: Dominique Watson
+ID:2404230
+Graded Individual Assignment #2
+Course: CIT2011 - Web Programming
+Tutor: Christine Anuli
+Due Date: November 21, 2025
+Description: Book Store
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Haven - Checkout</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="introduction">
+    <h1>Checkout</h1>
+    <!-- Logo -->
+     <img src="../Assets/Book haven.jpg" alt="Book Haven Logo" class="logo"> 
+    </div>
+  </header>
+  
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="home.html"><span class="material-icons">home</span> Home</a></li>
+      <li><a href="about.html"><span class="material-icons">info</span> About Us</a></li>
+      <li><a href="cart.html"><span class="material-icons">shopping_cart</span> Cart</a></li>
+      <li><a href="checkout.html" class="active"><span class="material-icons">credit_card</span> Checkout</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="checkout-container">
+
+      <!-- Order Summary -->
+      <div class="summary-box">
+        <h2>Order Summary</h2>
+        <p><strong>Subtotal:</strong> JMD <span id="co-subtotal">0</span></p>
+        <p><strong>Total Discount:</strong> JMD <span id="co-discount">0</span></p>
+        <p><strong>Total Tax:</strong> JMD <span id="co-tax">0</span></p>
+        <p><strong>Grand Total:</strong> JMD <span id="co-total">0</span></p>
+      </div>
+
+      <!-- Shipping Form -->
+      <div class="form-box">
+        <h2>Shipping Details</h2>
+
+        <form id="checkoutForm">
+          <label>Full Name:</label>
+          <input type="text" id="fullName" required>
+
+          <label>Address:</label>
+          <textarea id="address" required></textarea>
+
+          <label>Amount Being Paid (JMD):</label>
+          <input type="number" id="amountPaid" min="0" required>
+
+          <!-- Buttons -->
+          <div class="checkout-buttons">
+            <button type="button" id="confirmBtn">Confirm</button>
+            <button type="reset" id="cancelBtn">Cancel</button>
+            <button type="button" id="clearAllBtn">Clear All</button>
+            <button type="button" id="checkoutBtn">Check Out</button>
+            <button type="button" id="closeBtn">Close</button>
+          </div>
+        </form>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Book Haven</p>
+  </footer>
+
+  <script>
+    // Load cart data
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let subtotal = 0, discount = 0, tax = 0, total = 0;
+
+    // Compute totals
+    cart.forEach(item => {
+      let itemSubtotal = item.price * item.quantity;
+      let itemDiscount = itemSubtotal > 5000 ? itemSubtotal * 0.05 : 0;
+      let itemTax = (itemSubtotal - itemDiscount) * 0.15;
+      let itemTotal = itemSubtotal - itemDiscount + itemTax;
+
+      subtotal += itemSubtotal;
+      discount += itemDiscount;
+      tax += itemTax;
+      total += itemTotal;
+    });
+
+    // Display values
+    document.getElementById("co-subtotal").textContent = subtotal.toFixed(2);
+    document.getElementById("co-discount").textContent = discount.toFixed(2);
+    document.getElementById("co-tax").textContent = tax.toFixed(2);
+    document.getElementById("co-total").textContent = total.toFixed(2);
+
+    // Confirm button
+    document.getElementById("confirmBtn").addEventListener("click", () => {
+      alert("Order details confirmed!");
+    });
+
+    // Cancel button clears form only
+    document.getElementById("cancelBtn").addEventListener("click", () => {
+      alert("Form cleared.");
+    });
+
+    // Clear All button clears cart AND form
+    document.getElementById("clearAllBtn").addEventListener("click", () => {
+      localStorage.removeItem("cart");
+      alert("All cart items cleared!");
+      window.location.reload();
+    });
+
+    // Checkout button
+    document.getElementById("checkoutBtn").addEventListener("click", () => {
+      const name = document.getElementById("fullName").value;
+      const address = document.getElementById("address").value;
+      const payment = parseFloat(document.getElementById("amountPaid").value);
+
+      if (!name || !address || !payment) {
+        alert("Please fill out all required fields.");
+        return;
+      }
+
+      if (payment < total) {
+        alert("Insufficient payment! Please pay the full amount.");
+        return;
+      }
+
+      const change = payment - total;
+
+      alert(
+        "Thank you for your purchase!\n\n" +
+        "Name: " + name + "\n" +
+        "Address: " + address + "\n" +
+        "Amount Paid: JMD " + payment.toFixed(2) + "\n" +
+        "Total Cost: JMD " + total.toFixed(2) + "\n" +
+        "Change: JMD " + change.toFixed(2)
+      );
+
+      localStorage.removeItem("cart");
+      window.location.href = "home.html"; 
+    });
+
+    // Close button returns to cart
+    document.getElementById("closeBtn").addEventListener("click", () => {
+      window.location.href = "cart.html";
+    });
+  </script>
+</body>
+</html>

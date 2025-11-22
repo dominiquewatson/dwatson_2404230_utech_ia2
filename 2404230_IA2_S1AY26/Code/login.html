@@ -1,0 +1,95 @@
+<!--
+Name: Dominique Watson
+ID:2404230
+Graded Individual Assignment #2
+Course: CIT2011 - Web Programming
+Tutor: Christine Anuli
+Due Date: November 21, 2025
+Description: Book Store
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Haven</title> <!--Title-->
+  <link rel="stylesheet" href="style.css" /> <!-- CSS Stylesheet-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Google Material Icons-->
+  <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header -->
+ <header>
+    <div class="introduction">
+      <h1>Book Haven</h1>
+      <!-- Logo -->
+      <img src="../Assets/Book haven.jpg" alt="Book Haven Logo" class="logo"> 
+      <img src="../Assets/Books.jpg" alt="Books" class="book-bg">
+    </div>
+  </header>
+ 
+  <!--Main-->
+  <main>
+    <section class="login">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div class="forms">
+        <!--Username (text)-->
+        <label for="username">Username </label>
+        <input type="text" id="username" name="username" required/>
+      </div>
+
+        <div class="forms">
+        <!--Password (password)-->
+        <label for="password">Password </label>
+        <input type="password" id="password" name="password" required/>
+      </div>
+        <button type="submit" id="loginBtn">Login</button>
+        </form>
+
+      <p id="message"></p>
+      </section>
+    </main>
+   
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Book Haven</p>
+  </footer>
+
+ <!-- Javascript-->
+<script>
+  //
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("loginForm");
+      const message = document.getElementById("message");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault(); 
+
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        // Validation
+        if (username === "" || password === "") {
+          message.textContent = "Please enter the username and password.";
+          return;
+        }
+        // Define the valid login credentials
+        const validUsername = "manager123";
+        const validPassword = "password123";
+
+        if (username === validUsername && password === validPassword) {
+          message.textContent = "Login successful!";
+          // After 1 second, redirect to register.html
+          setTimeout(() => {
+            window.location.href = "register.html";
+          }, 1000);
+        } else {
+          // Displays an error message if the login is invalid
+          message.textContent = "Invalid username or password.";
+        }
+      });
+    });
+</script>
+</body>
+</html>

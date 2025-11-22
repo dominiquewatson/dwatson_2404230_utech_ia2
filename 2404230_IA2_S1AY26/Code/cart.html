@@ -1,0 +1,153 @@
+<!--
+Name: Dominique Watson
+ID:2404230
+Graded Individual Assignment #2
+Course: CIT2011 - Web Programming
+Tutor: Christine Anuli
+Due Date: November 21, 2025
+Description: Book Store
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Haven- Cart</title> <!--Title-->
+  <link rel="stylesheet" href="style.css" /> <!-- CSS Stylesheet-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- Google Material Icons-->
+  <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet" /> <!-- Google Fonts-->
+</head>
+<body>
+
+  <!-- Header -->
+ <header>
+    <div class="introduction">
+      <h1>Cart</h1>
+      <!-- Logo -->
+      <img src="../Assets/Book haven.jpg" alt="Book Haven Logo" class="logo"> 
+    </div>
+  </header>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="home.html"><span class="material-icons">home</span> Home</a></li>
+      <li><a href="about.html"><span class="material-icons">info</span> About Us</a></li>
+      <li><a href="cart.html" class="active"><span class="material-icons">shopping_cart</span> Cart</a></li>
+      <li><a href="checkout.html"><span class="material-icons">credit_card</span> Checkout</a></li>
+    </ul>
+  </nav>
+
+  <!-- Cart Section -->
+  <main>
+  <section class="cart-section">
+    <h2>Shopping Cart</h2>
+
+    <div class="cart-table">
+      <div class="cart-header">
+        <div class="cart-col">Item</div>
+        <div class="cart-col">Price (JMD)</div>
+        <div class="cart-col">Quantity</div>
+        <div class="cart-col">Sub-total</div>
+        <div class="cart-col">Discount</div>
+        <div class="cart-col">Tax</div>
+        <div class="cart-col">Total</div>
+        <div class="cart-col">Remove</div>
+      </div>
+      <div id="cart-items" class="cart-body">
+   
+      </div>
+    </div>
+
+      <!-- Summary -->
+      <div class="cart-summary">
+        <p><strong>Subtotal:</strong> JMD <span id="summary-subtotal">0</span></p>
+        <p><strong>Total Discount:</strong> JMD <span id="summary-discount">0</span></p>
+        <p><strong>Total Tax:</strong> JMD <span id="summary-tax">0</span></p>
+        <p><strong>Grand Total:</strong> JMD <span id="summary-total">0</span></p>
+        <button id="checkoutBtn">Checkout</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Book Haven</p>
+  </footer>
+
+  <script>
+    // Load cart from localStorage
+   
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const cartContainer = document.getElementById("cart-items");
+
+function updateCartDisplay() {
+  cartContainer.innerHTML = ""; // Clear previous items
+
+  let subtotal = 0;
+  let totalDiscount = 0;
+  let totalTax = 0;
+
+  cart.forEach((item, index) => {
+    const itemSubtotal = item.price * item.quantity;
+    const discount = itemSubtotal > 5000 ? itemSubtotal * 0.05 : 0; // 5% discount
+    const tax = (itemSubtotal - discount) * 0.15; // 15% tax
+    const total = itemSubtotal - discount + tax;
+
+    subtotal += itemSubtotal;
+    totalDiscount += discount;
+    totalTax += tax;
+
+    // Create cart item div
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("cart-row");
+    itemDiv.innerHTML = `
+      <div class="cart-col">${item.title}</div>
+      <div class="cart-col">${item.price}</div>
+      <div class="cart-col">
+        <input type="number" min="1" value="${item.quantity}" data-index="${index}" class="qty-input" />
+      </div>
+      <div class="cart-col">${itemSubtotal.toFixed(2)}</div>
+      <div class="cart-col">${discount.toFixed(2)}</div>
+      <div class="cart-col">${tax.toFixed(2)}</div>
+      <div class="cart-col">${total.toFixed(2)}</div>
+      <div class="cart-col">
+        <button class="remove-btn" data-index="${index}">Remove</button>
+      </div>
+    `;
+    cartContainer.appendChild(itemDiv);
+  });
+
+  // Update summary
+  document.getElementById("summary-subtotal").textContent = subtotal.toFixed(2);
+  document.getElementById("summary-discount").textContent = totalDiscount.toFixed(2);
+  document.getElementById("summary-tax").textContent = totalTax.toFixed(2);
+  document.getElementById("summary-total").textContent = (subtotal - totalDiscount + totalTax).toFixed(2);
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+// Update quantity
+document.addEventListener("change", (e) => {
+  if (e.target.classList.contains("qty-input")) {
+    const index = e.target.getAttribute("data-index");
+    cart[index].quantity = parseInt(e.target.value);
+    updateCartDisplay();
+  }
+});
+
+// Remove item
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("remove-btn")) {
+    const index = e.target.getAttribute("data-index");
+    cart.splice(index, 1);
+    updateCartDisplay();
+  }
+});
+
+// Checkout
+document.getElementById("checkoutBtn").addEventListener("click", () => {
+  window.location.href = "checkout.html";
+});
+
+// Initial render
+updateCartDisplay();
+</script>

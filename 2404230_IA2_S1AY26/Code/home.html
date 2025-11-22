@@ -1,0 +1,335 @@
+<!--
+Name: Dominique Watson
+ID:2404230
+Graded Individual Assignment #2
+Course: CIT2011 - Web Programming
+Tutor: Christine Anuli
+Due Date: November 21, 2025
+Description: Book Store
+-->
+<!--Products-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Haven</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="introduction">
+      <h1>Book Haven</h1>
+      <!-- Logo -->
+      <img src="../Assets/Book haven.jpg" alt="Book Haven Logo" class="logo"> 
+      <img src="../Assets/Books.jpg" alt="Books" class="book-bg">
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="home.html" class="active">
+        <span class="material-icons">home</span> Home
+      </a></li>
+
+      <li><a href="about.html"> 
+        <span class="material-icons">info</span> About Us
+      </a></li>
+
+      <li><a href="cart.html"> 
+        <span class="material-icons">shopping_cart</span> Cart
+      </a></li>
+
+      <li><a href="checkout.html"> 
+        <span class="material-icons">credit_card</span> Checkout
+      </a></li>
+    </ul>
+  </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Book Haven</h1>
+        <p>Explore a comprehensive selection of current best books featuring trending titles, top bookseller picks, and the newest releases.</p>
+    </section>
+<!-- Books Section -->
+  <section class="books-section">
+    <h2 class="section-title">Discover Books</h2>
+    <div class="books-container">
+      <!-- Book 1 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Bad Blood.jpg" alt="Bad Blood">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Bad Blood</div>
+          <div class="book-author">by Jennifer Lynn Barnes</div>
+          <div class="book-price">JMD $2,850</div>
+          <button class="book-btn add-to-cart" data-title="Bad Blood" data-price="2850">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 2 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Charlotte's Web.jpg" alt="Charlotte's Web">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Charlotte's Web</div>
+          <div class="book-author">by E.B. White</div>
+          <div class="book-price">JMD $1,950</div>
+          <button class="book-btn add-to-cart" data-title="Charlotte's Web" data-price="1950">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 3 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Dork Diaries.jpg" alt="Dork Diaries">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Dork Diaries</div>
+          <div class="book-author">by Rachel Renée Russell</div>
+          <div class="book-price">JMD $2,150</div>
+          <button class="book-btn add-to-cart" data-title="Dork Diaries" data-price="2150">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 4 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Everything Everything.jpg" alt="Everything Everything">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Everything Everything</div>
+          <div class="book-author">by Nicola Yoon</div>
+          <div class="book-price">JMD $2,450</div>
+          <button class="book-btn add-to-cart" data-title="Everything Everything" data-price="2450">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 5 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Five Survive.jpg" alt="Five Survive">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Five Survive</div>
+          <div class="book-author">by Holly Jackson</div>
+          <div class="book-price">JMD $2,750</div>
+          <button class="book-btn add-to-cart" data-title="Five Survive" data-price="2750">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 6 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Hunger Games.jpg" alt="Hunger Games">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Hunger Games</div>
+          <div class="book-author">by Suzanne Collins</div>
+          <div class="book-price">JMD $3,150</div>
+          <button class="book-btn add-to-cart" data-title="Hunger Games" data-price="3150">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 7 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/I Am Not Jessica Chen.jpg" alt="I Am Ni Jessica Chen">
+        </div>
+        <div class="book-info">
+          <div class="book-title">I Am Not Jessica Chen</div>
+          <div class="book-author">by Jessica Chen</div>
+          <div class="book-price">JMD $2,350</div>
+          <button class="book-btn add-to-cart" data-title="I Am Not Jessica Chen" data-price="2350">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 8 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Inheritance Games.jpg" alt="Inheritance Games">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Inheritance Games</div>
+          <div class="book-author">by Jennifer Lynn Barnes</div>
+          <div class="book-price">JMD $2,950</div>
+          <button class="book-btn add-to-cart" data-title="Inheritance Games" data-price="2950">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 9 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Last Night At The Telegraph Club.jpg" alt="Last Night At The Telegraph Club">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Last Night At The Telegraph Club</div>
+          <div class="book-author">by Malinda Lo</div>
+          <div class="book-price">JMD $2,650</div>
+          <button class="book-btn add-to-cart" data-title="Last Night At The Telegraph Club" data-price="2650">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 10 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/One of Us Is Lying.jpg" alt="One of Us Is Lying">
+        </div>
+        <div class="book-info">
+          <div class="book-title">One of Us Is Lying</div>
+          <div class="book-author">by Karen M. McManus</div>
+          <div class="book-price">JMD $2,550</div>
+          <button class="book-btn add-to-cart" data-title="One of Us Is Lying" data-price="2550">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 11 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Perks of Being A Wallflower.jpg" alt="Perks of Being A Wallflower">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Perks of Being A Wallflower</div>
+          <div class="book-author">by Stephen Chbosky</div>
+          <div class="book-price">JMD $2,250</div>
+          <button class="book-btn add-to-cart" data-title="Perks of Being A Wallflower" data-price="2250">Add to Cart</button>
+        </div>
+      </div>
+      
+      <!-- Book 12 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Problematic Summer Romance.jpg" alt="Problematic Summer Romance">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Problematic Summer Romance</div>
+          <div class="book-author">by Ali Hazelwood</div>
+          <div class="book-price">JMD $2,150</div>
+          <button class="book-btn add-to-cart" data-title="Problematic Summer Romance" data-price="2150">Add to Cart</button>
+        </div>
+      </div>
+
+       <!-- Book 13 -->
+       <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/The Cousins.jpg" alt="The Cousins">
+        </div>
+        <div class="book-info">
+          <div class="book-title">The Cousins</div>
+          <div class="book-author">by Karen M. McManus</div>
+          <div class="book-price">JMD $2,550</div>
+          <button class="book-btn add-to-cart" data-title="Problematic Summer Romance" data-price="2550">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 14 -->
+       <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/The Hate U Give.jpg" alt="The Hate U Give Book">
+        </div>
+        <div class="book-info">
+          <div class="book-title">The Hate U Give</div>
+          <div class="book-author">by Angie Thomas</div>
+          <div class="book-price">JMD JMD $2,950</div>
+          <button class="book-btn add-to-cart" data-title="The Hate U Give" data-price="2950">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 15 -->
+       <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/The Sun is Also A Star.jpg" alt="The Sun is Also A Star">
+        </div>
+        <div class="book-info">
+          <div class="book-title">The Sun is Also A Star</div>
+          <div class="book-author">by Nicola Yoon</div>
+          <div class="book-price">JMD $2,450</div>
+          <button class="book-btn add-to-cart" data-title="Problematic Summer Romance" data-price="2450">Add to Cart</button>
+        </div>
+      </div>
+
+        <!-- Book 16 -->   
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/The Reappearance of Rachel Price.jpg" alt="The Reappearance of Rachel Price">
+        </div>
+        <div class="book-info">
+          <div class="book-title">The Reappearance of Rachel Price</div>
+          <div class="book-author">by Holly Jackson</div>
+          <div class="book-price">JMD $2,850</div>
+          <button class="book-btn add-to-cart" data-title="The Reappearance of Rachel Price" data-price="2850">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 17 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Turtles All The Way Down.jpg" alt="Turtles All The Way Down">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Turtles All The Way Down</div>
+          <div class="book-author">by John Green</div>
+          <div class="book-price">JMD $2,350</div>
+          <button class="book-btn add-to-cart" data-title="Turtles All The Way Down" data-price="2350">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Book 18 -->
+      <div class="book-card">
+        <div class="book-cover">
+          <img src="Assets/Wild Love.jpg" alt="Wild Love">
+        </div>
+        <div class="book-info">
+          <div class="book-title">Wild Love</div>
+          <div class="book-author">by Elsie Silver</div>
+          <div class="book-price">JMD $2,150</div>
+          <button class="book-btn add-to-cart" data-title="Wild Love" data-price="2150">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Book Haven</p>
+  </footer>
+  <script>
+  // Add to Cart Functionality
+  const cartButtons = document.querySelectorAll(".add-to-cart");
+
+  cartButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      const title = this.dataset.title;
+      const price = parseFloat(this.dataset.price);
+
+      // Get existing cart or create a new one
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Check if item already exists in the cart
+      const existingItem = cart.find(item => item.title === title);
+
+      if (existingItem) {
+        existingItem.quantity += 1;  
+      } else {
+        cart.push({
+          title: title,
+          price: price,
+          quantity: 1
+        });
+      }
+
+      // Save updated cart
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert(`${title} has been added to your cart!`);
+    });
+  });
+</script>
+
+</body>
+</html>

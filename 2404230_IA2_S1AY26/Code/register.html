@@ -1,0 +1,126 @@
+<!--
+Name: Dominique Watson
+ID:2404230
+Graded Individual Assignment #2
+Course: CIT2011 - Web Programming
+Tutor: Christine Anuli
+Due Date: November 21, 2025
+Description: Book Store
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Haven</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header -->
+ <header>
+    <div class="introduction">
+      <h1>Book Haven</h1>
+      <!-- Logo -->
+      <img src="../Assets/Book haven.jpg" alt="Book Haven Logo" class="logo"> 
+      <img src="../Assets/Books.jpg" alt="Books" class="book-bg">
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <section class="registration">
+      <h2>Registration</h2>
+      <form id="registrationForm">
+        <div class="forms">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" required />
+        </div>
+
+        <div class="forms">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" required />
+        </div>
+
+        <div class="forms">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="forms">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+
+        <div class="forms">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required />
+        </div>
+
+        <button type="submit" id="registrationBtn">Register</button>
+      </form>
+
+      <p id="message"></p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Book Haven</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const form = document.getElementById("registrationForm");
+      const message = document.getElementById("message");
+
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Get input values
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        
+
+        // Validate fields
+        if (!firstName || !lastName || !email || !password || !confirmPassword) {
+          message.textContent = "Kindly fill in all fields.";
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          message.textContent = "Passwords do not match.";
+          return;
+        }
+
+        if (password.length < 8) {
+          message.textContent = "Password must be at least 8 characters long.";
+          return;
+        }
+
+        // Email pattern
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          message.textContent = "Kindly enter a valid email address.";
+          return;
+        }
+
+        // Success message
+        message.textContent = `Welcome, ${firstName} ${lastName}! Your registration was successful.`;
+        form.reset();
+
+        // Redirect after 1 second
+        setTimeout(() => {
+          window.location.href = "home.html";
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>
